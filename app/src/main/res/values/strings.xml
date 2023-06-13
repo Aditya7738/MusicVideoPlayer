@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MusicVideo Player</string>
+    <string name="videotip">Click to watch video</string>
+    <string name="audiotip">Click to listen music</string>
+</resources>
