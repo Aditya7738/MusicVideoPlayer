@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     VideoModel videoModel;
     Uri uri;
+
+    //ProgressBar progressBar;
 
     public VideoAdapter(ArrayList<VideoModel> videoModelArrayList, Context context, VideoClickInterface videoClickInterface, Uri uri) {
         this.videoModelArrayList = videoModelArrayList;
@@ -81,14 +84,42 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         ImageView thumbnailIV;
 
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             thumbnailIV = itemView.findViewById(R.id.thumimg);
+            //progressBar = itemView.findViewById(R.id.displayingVideo);
 
         }
     }
 
+//    @Override
+//    public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
+//        super.onViewAttachedToWindow(holder);
+//        progressBar.setVisibility(View.GONE);
+//    }
+
+//    @Override
+//    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+//        super.onAttachedToRecyclerView(recyclerView);
+//     //   progressBar.setVisibility(View.GONE);
+//    }
+//
+//    @Override
+//    public void registerAdapterDataObserver(@NonNull RecyclerView.AdapterDataObserver observer) {
+//        super.registerAdapterDataObserver(observer);
+//        progressBar.setVisibility(View.GONE);
+//    }
+//
+//    @Override
+//    public void onViewRecycled(@NonNull ViewHolder holder) {
+//        super.onViewRecycled(holder);
+//        progressBar.setVisibility(View.GONE);
+//    }
+
     public interface VideoClickInterface{
         void onVideoClick(int position);
     }
+
+
 }

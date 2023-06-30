@@ -4,15 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".VideoActivity">
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        app:dividerColor="@color/metallic_gold"
+        android:id="@+id/divider"
+        android:layout_alignParentTop="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/vpermissionDeniedLayout"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You have denied permission to access media on your device"
+            android:textSize="@dimen/_20ssp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/vgrantPermissionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grant permsission"
+            android:textColor="@color/black"
+            android:background="@color/metallic_gold"
+            android:padding="@dimen/_10sdp"
+            android:onClick="grantPermission"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+    </LinearLayout>
 
 
 
-    <ProgressBar
-        android:id="@+id/displayingVideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+
+    <!--    <ProgressBar-->
+<!--        android:id="@+id/displayingVideo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

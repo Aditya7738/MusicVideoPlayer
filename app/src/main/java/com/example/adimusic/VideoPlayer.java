@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class VideoPlayer extends AppCompatActivity {
     TextView vtitletv, ctimetv, etimetv;
     SeekBar vseekbar;
     ImageButton replay10ib, for10ib, pause;
+
+    //ImageView backBtn;
     String videoname, videopath;
 
     int vduration;
@@ -46,6 +49,7 @@ public class VideoPlayer extends AppCompatActivity {
         replay10ib = (ImageButton) findViewById(R.id.replay10);
         pause = (ImageButton) findViewById(R.id.pausev);
         for10ib = (ImageButton) findViewById(R.id.forward10);
+        //backBtn = (ImageView) findViewById(R.id.backBtn);
 
         vseekbar = (SeekBar) findViewById(R.id.vseekbar);
 
@@ -69,6 +73,7 @@ public class VideoPlayer extends AppCompatActivity {
                 videoView.start();
             }
         });
+
 
         vtitletv.setText(videoname + ".mp4");
 
@@ -99,6 +104,7 @@ public class VideoPlayer extends AppCompatActivity {
             public void onClick(View view) {
                 if(videoView.isPlaying()){
                     videoView.pause();
+
                     pause.setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_circle_outline_24));
                 }else{
                     videoView.start();
@@ -106,6 +112,13 @@ public class VideoPlayer extends AppCompatActivity {
                 }
             }
         });
+
+//        backBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(VideoPlayer.this, VideoActivity.class));
+//            }
+//        });
 
         videoRL.setOnClickListener(new View.OnClickListener() {
             @Override

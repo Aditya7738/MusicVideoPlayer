@@ -17,21 +17,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <ImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:src="@drawable/musicimage"
         android:tooltipText="@string/audiotip"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="@dimen/_50sdp"
         android:id="@+id/Audiobtn"
         />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Audio"
-            android:textSize="30dp"
+            android:textSize="@dimen/_30sdp"
             android:textColor="@color/black"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="@dimen/_15sdp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -40,9 +40,9 @@
         android:orientation="vertical"
         >
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:src="@drawable/videoimage"
             android:id="@+id/Videobtn"
             android:tooltipText="@string/videotip"
@@ -51,17 +51,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Video"
-            android:textSize="30dp"
+            android:textSize="@dimen/_30sdp"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="@dimen/_10sdp"/>
     </LinearLayout>
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/loadvideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+<!--    <ProgressBar-->
+<!--        android:id="@+id/loadvideo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"/>-->
 
 
 </RelativeLayout>

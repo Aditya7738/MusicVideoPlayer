@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@color/black"
+    android:padding="@dimen/_20sdp"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    >
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressbar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:progressDrawable="@drawable/custom_progressbar"-->
+<!--        android:indeterminateOnly="false"-->
+
+<!--        />-->
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:indeterminateTint="@color/metallic_gold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetching your all old-new videos.. \nKindly click on 'wait' if you see app is not responding"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/metallic_gold"/>
+
+</LinearLayout>

@@ -7,4 +7,11 @@
     <item
         android:id="@+id/sdm"
         android:title="SD music files"/>
+
+    <item
+        android:id="@+id/searchbar"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:icon="@drawable/baseline_search_24"/>
 </menu>

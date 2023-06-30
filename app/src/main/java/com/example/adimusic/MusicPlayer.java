@@ -1,24 +1,34 @@
 package com.example.adimusic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.chibde.visualizer.BarVisualizer;
+import com.chibde.visualizer.SquareBarVisualizer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,15 +45,30 @@ public class MusicPlayer extends AppCompatActivity {
     ImageView previous;
     ImageView pause;
 
+    ImageView repeativ, playlistiv;
+
+    int repeatModeNo = 3;
     String songtitle;
     ArrayList<AudioModel> songData;
     AudioModel currentSong;
 
     SeekBar seekBar;
 
-    BarVisualizer barVisualizer;
+    SquareBarVisualizer squareBarVisualizer;
 
     MediaPlayer mediaPlayer = MyMediaPlayer.getInstance();
+
+    LinearLayout suggestionLayout;
+
+    Button permissionBtn;
+
+    ImageView closeIv;
+
+    TextView suggestionTv;
+
+    String songname;
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -60,14 +85,22 @@ public class MusicPlayer extends AppCompatActivity {
         currentTime = (TextView) findViewById(R.id.cttv);
         totalTime = (TextView) findViewById(R.id.totalTimeTV);
         seekBar = (SeekBar) findViewById(R.id.musicseekbar);
+        repeativ = (ImageView) findViewById(R.id.repeatmode);
+        playlistiv = (ImageView) findViewById(R.id.playlist);
 
-        barVisualizer = findViewById(R.id.barvisualizer);
+        suggestionLayout = (LinearLayout) findViewById(R.id.suggestionLayout);
+        permissionBtn = (Button) findViewById(R.id.permissionBtn);
+        closeIv = (ImageView) findViewById(R.id.closeSuggestion);
+        suggestionTv = (TextView) findViewById(R.id.suggestionTv);
 
-
-
-
-
+        squareBarVisualizer = findViewById(R.id.squarebarvisualizer);
+        
         songData = (ArrayList<AudioModel>) getIntent().getSerializableExtra("songData");
+
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         setResourceWithMusic();
 
@@ -104,28 +137,108 @@ public class MusicPlayer extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void supportNavigateUpTo(@NonNull Intent upIntent) {
+        super.supportNavigateUpTo(upIntent);
+        finish();
+    }
+
     void setResourceWithMusic(){
         currentSong = songData.get(MyMediaPlayer.currentIndex);
+        songname = currentSong.getTitle();
         songtv.setText(currentSong.getTitle());
         songtv.setSelected(true);
+        songtv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 
-        barVisualizer.setColor(ContextCompat.getColor(this, R.color.metallic_gold));
-        barVisualizer.setDensity(70);
-        barVisualizer.setPlayer(mediaPlayer.getAudioSessionId());
+        suggestionLayout.setVisibility(View.GONE);
+        if(getIntent().getBooleanExtra("recordAudioPermDenied", true)){
+            squareBarVisualizer.setEnabled(false);
 
+            suggestionLayout.setVisibility(View.VISIBLE);
+
+            suggestionTv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            suggestionTv.setSelected(true);
+
+            permissionBtn.setOnClickListener(view -> givePermission());
+            closeIv.setOnClickListener(view -> closeSuggestion());
+
+        }else {
+
+            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                    == PackageManager.PERMISSION_GRANTED) {
+
+                squareBarVisualizer.setEnabled(true);
+                suggestionLayout.setVisibility(View.GONE);
+                squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.metallic_gold));
+                squareBarVisualizer.setDensity(65);
+
+                squareBarVisualizer.setGap(2);
+                squareBarVisualizer.setPlayer(mediaPlayer.getAudioSessionId());
+            }
+
+        }
         totalTime.setText(convertTOMMSS(currentSong.getDuration()));
 
         playMusic();
         pause.setOnClickListener(view -> pauseMusic());
         next.setOnClickListener(view -> playNextMusic());
         previous.setOnClickListener(view -> playPrevousMusic());
+        playlistiv.setOnClickListener(view -> navigateToSongList());
+        repeativ.setOnClickListener(view -> repeatMode());
 
     }
+
+    private void repeatMode() {
+        if(repeatModeNo == 1){
+
+        }
+    }
+
+    private void navigateToSongList() {
+        startActivity(new Intent(this, AudioActivity.class));
+    }
+
+    private void closeSuggestion() {
+        suggestionLayout.setVisibility(View.GONE);
+    }
+
+    private void givePermission() {
+//        Intent intent = new Intent();
+//        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//        Uri uri = Uri.fromParts("package", getPackageName(), null);
+//        intent.setData(uri);
+//        startActivity(intent);
+        new AlertDialog.Builder(this)
+                .setTitle("Required Permission")
+                .setMessage("To experience audio visualizer with music, please give record audio permission manually. Click on Settings. \n " +
+                        "App permissions -> Click on Microphone -> select Allow \n" + "Close app and start again to get effect" )
+                .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+
+                    }
+                }).show();
+
+    }
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void pauseMusic(){
         if(mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
+            pause.setImageDrawable(null);
             pause.setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_arrow_24));
 
         }else {

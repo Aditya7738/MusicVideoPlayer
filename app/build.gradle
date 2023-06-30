@@ -45,6 +45,10 @@ dependencies {
     //implementation 'com.github.GautamChibde:android-audio-visualizer:2.2.0'
     implementation 'io.github.gautamchibde:audiovisualizer:2.2.5'
     testImplementation 'junit:junit:4.13.2'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.7'
+
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

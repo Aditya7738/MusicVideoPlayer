@@ -5,20 +5,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AudioActivity"
-    android:background="@color/black">
+    android:background="@color/black"
+   >
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/_1sdp"
         app:dividerColor="@color/metallic_gold"
+        android:id="@+id/divider"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/permissionDeniedLayout"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You have denied permission to access media on your device"
+            android:textSize="@dimen/_20ssp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/grantPermissionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grant permsission"
+            android:textColor="@color/black"
+            android:background="@color/metallic_gold"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+    </LinearLayout>
+
+
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:layout_margin="@dimen/_5sdp"-->
+<!--        android:id="@+id/searchMusic"-->
+<!--        android:inputType="text"-->
+<!--        app:queryHint="Search for music"-->
+<!--        android:background="@color/black"-->
+<!--        app:submitBackground="@color/metallic_gold"-->
+<!--        android:layout_below="@+id/divider"/>-->
 
     <ListView
         android:id = "@+id/songList"
         android:divider="@color/metallic_gold"
-        android:dividerHeight="1dp"
+        android:dividerHeight="@dimen/_1sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/divider"
+        android:layout_above="@+id/homemusicview"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/homemusicview"
+        android:background="@color/black"
+        >
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            app:dividerColor="@color/metallic_gold"
+            />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/homemusicontent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="?attr/actionBarSize"
+            android:src="@drawable/music"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="songname"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14ssp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:id="@+id/homeSongName"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:marqueeRepeatLimit="marquee_forever"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/songname"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_5sdp"-->
+<!--            android:ellipsize="marquee"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"-->
+<!--            android:padding="@dimen/_10sdp"-->
+<!--            android:scrollHorizontally="true"-->
+<!--            android:singleLine="true"-->
+<!--            android:text="song name"-->
+<!--            android:textSize="@dimen/_20ssp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_skip_previous_24"
+            android:id="@+id/skipiv"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:contentDescription="play previous song"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_pause_24"
+            android:id="@+id/pauseiv"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:contentDescription="pause song"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_skip_next_24"
+            android:id="@+id/nextiv"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:contentDescription="play next" />
+    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

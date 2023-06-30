@@ -6,113 +6,195 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-
     tools:context=".MusicPlayer">
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/_1sdp"
         app:dividerColor="@color/metallic_gold"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="song name"
-        android:id="@+id/songname"
-        android:textStyle="bold"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-
-        />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/music"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom"
-        android:layout_marginBottom="10dp">
-
-
-        <com.chibde.visualizer.BarVisualizer
-            android:id="@+id/barvisualizer"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="20sp">
+        android:id="@+id/suggestionLayout"
+        android:background="@color/metallic_gold"
+        >
         <TextView
+            android:id="@+id/suggestionTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="You are missing best experience of music with audio visualizer."
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/_3sdp"
+            />
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="You are missing best experience of music with audio visualizer"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:ellipsize="marquee"-->
+<!--            android:singleLine="true"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_margin="@dimen/_3sdp"-->
+<!--            android:marqueeRepeatLimit="marquee_forever"/>-->
+
+        <Button
+            android:id="@+id/permissionBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_margin="@dimen/_3sdp"
+            android:textColor="@color/metallic_gold"
+            android:background="@color/black"
+            android:text="Grant Permission"
+            android:layout_weight="1"/>
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cttv"
-            android:text="00:00"/>
-
-        <SeekBar
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:progressTint="@color/metallic_gold"
-            android:thumbTint="@color/metallic_gold"
-            android:outlineAmbientShadowColor="@color/white"
-            android:id="@+id/musicseekbar"
-             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/totalTimeTV"
-            android:text="00:00"/>
+            android:src="@drawable/baseline_close_24"
+            android:id="@+id/closeSuggestion"/>
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/songname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20sp">
+        android:padding="@dimen/_10sdp"
+        android:singleLine="true"
+        android:text="song name"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        />
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/baseline_skip_previous_24"
-            android:id="@+id/previous"/>
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/baseline_pause_24"
-            android:id="@+id/pause"
-            />
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/baseline_skip_next_24"
-            android:id="@+id/next"/>
-    </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_230sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/music"/>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20ssp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cttv"
+                    android:text="00:00"/>
+
+                <SeekBar
+                    android:layout_width="@dimen/_225sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:progressTint="@color/metallic_gold"
+                    android:thumbTint="@color/metallic_gold"
+                    android:outlineAmbientShadowColor="@color/white"
+                    android:id="@+id/musicseekbar"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/totalTimeTV"
+                    android:text="00:00"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:layout_marginBottom="@dimen/_20sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/baseline_repeat_24"
+                    android:id="@+id/repeatmode"
+                    android:contentDescription="repeat song"/>
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/baseline_skip_previous_24"
+                    android:id="@+id/previous"
+                    android:contentDescription="previous song"/>
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/baseline_pause_24"
+                    android:id="@+id/pause"
+                    android:contentDescription="pause song"
+                    />
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/baseline_skip_next_24"
+                    android:id="@+id/next"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:contentDescription="next song"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/baseline_playlist_play_24"
+                    android:id="@+id/playlist"
+                    android:contentDescription="show playlist" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_60sdp"-->
+<!--                    android:layout_height="@dimen/_60sdp"-->
+<!--                    android:layout_marginRight="@dimen/_30sdp"-->
+<!--                    android:background="@drawable/baseline_skip_previous_24"-->
+<!--                    android:id="@+id/previous"/>-->
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_60sdp"-->
+<!--                    android:layout_height="@dimen/_60sdp"-->
+<!--                    android:layout_marginRight="@dimen/_30sdp"-->
+<!--                    android:background="@drawable/baseline_pause_24"-->
+<!--                    android:id="@+id/pause"-->
+<!--                    />-->
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_60sdp"-->
+<!--                    android:layout_height="@dimen/_60sdp"-->
+<!--                    android:background="@drawable/baseline_skip_next_24"-->
+<!--                    android:id="@+id/next"/>-->
+
+            </LinearLayout>
+
+            <com.chibde.visualizer.SquareBarVisualizer
+                android:id="@+id/squarebarvisualizer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"/>
 
 
 
+        </LinearLayout>
 
+    </ScrollView>
 
 
 
