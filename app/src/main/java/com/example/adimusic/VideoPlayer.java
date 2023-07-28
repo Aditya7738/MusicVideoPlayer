@@ -1,5 +1,6 @@
 package com.example.adimusic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,6 +37,8 @@ public class VideoPlayer extends AppCompatActivity {
     VideoView videoView;
     RelativeLayout videocontrols, videoRL;
     boolean isOpen = true; //to check custom controls are visible or not
+    private int videoprogress;
+    private String currentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,11 +143,13 @@ public class VideoPlayer extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(vseekbar.getId() == R.id.vseekbar){
                     if(fromUser){
+                        videoprogress = progress;
                         videoView.seekTo(progress);
                         videoView.start();
-                        int currentPosition = videoView.getCurrentPosition();
+                        //int currentPosition = videoView.getCurrentPosition();
                         //ctimetv.setText("" + convertTime(videoView.getDuration() - currentPosition));
                         ctimetv.setText("" + convertTime(videoView.getCurrentPosition()));
+                        currentPosition = convertTime(videoView.getCurrentPosition());
 
                     }
                 }
@@ -162,6 +167,21 @@ public class VideoPlayer extends AppCompatActivity {
         });
 
         //initializeseekbar();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("seekprogress", videoprogress);
+        outState.putString("seekcurrentpos", currentPosition);
+        //outState.putString("taskpriority", taskpriority);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        videoView.seekTo(savedInstanceState.getInt("seekprogress"));
+        ctimetv.setText(savedInstanceState.getString("seekcurrentpos"));
     }
 
     private void sethandler(){

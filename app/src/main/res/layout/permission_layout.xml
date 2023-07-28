@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:id="@+id/permissionDeniedLayout">
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:id="@+id/divider"
+        app:dividerColor="@color/metallic_gold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@+id/divider">
+    <TextView
+        android:id="@+id/denyTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You have denied permission to access media on your device"
+        android:textSize="@dimen/_20ssp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/grantPermissionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grant permsission"
+        android:textColor="@color/black"
+        android:background="@color/metallic_gold"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        />
+    </LinearLayout>
+
+</RelativeLayout>

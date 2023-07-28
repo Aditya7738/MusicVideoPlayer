@@ -61,6 +61,8 @@ public class InternalMemoryMusic extends AppCompatActivity {
 
         StorageVolume storageVolume = storageVolumeList.get(0);
 
+        Uri externalContentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
 
             //File directory = new File(String.valueOf(Environment.getExternalStoragePublicDirectory("MyMusic")));
@@ -86,7 +88,7 @@ public class InternalMemoryMusic extends AppCompatActivity {
 
                     audioModel3 = new AudioModel(path,
                             f.getName().replace(".mp3", ""),
-                            duration);
+                            duration, externalContentUri);
 
                     if (new File(audioModel3.getPath()).exists()) {
                         imsongData.add(audioModel3);
@@ -117,7 +119,7 @@ public class InternalMemoryMusic extends AppCompatActivity {
 
                                 audioModel4 = new AudioModel(path,
                                         file.getName().replace(".mp3", ""),
-                                        duration);
+                                        duration, externalContentUri);
 
                                 if (new File(audioModel4.getPath()).exists()) {
                                     imsongData.add(audioModel4);

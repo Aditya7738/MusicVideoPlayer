@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".MusicPlayer">
+    tools:context=".MusicPlayer"
+    >
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
@@ -98,7 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cttv"
+                    android:id="@+id/currentTv"
                     android:text="00:00"/>
 
                 <SeekBar

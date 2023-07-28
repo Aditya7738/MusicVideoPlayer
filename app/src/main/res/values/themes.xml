@@ -27,6 +27,25 @@
 
     </style>
 
+    <style name="Theme.MusicPlayer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black</item>
+
+        <item name="colorPrimaryVariant">@color/black</item>
+
+        <item name="colorOnPrimary">@color/metallic_gold</item>
+        <item name="titleTextColor">@color/metallic_gold</item>
+        <item name="android:textColor">@color/metallic_gold</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/metallic_gold</item>
+        <item name="colorSecondaryVariant">@color/metallic_gold</item>
+        <item name="colorOnSecondary">@color/metallic_gold</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
     <style name="Theme.VideoPlayer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>

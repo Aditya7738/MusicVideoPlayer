@@ -74,6 +74,7 @@ public class SDmusic extends AppCompatActivity {
 
         StorageVolume storageVolume = storageVolumeList.get(1);
 
+        Uri externalContentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
 
@@ -98,9 +99,10 @@ public class SDmusic extends AppCompatActivity {
                     mmr.setDataSource(path);
                     String duration = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
 
+
                     audioModel1 = new AudioModel(path,
                             f.getName().replace(".mp3", ""),
-                            duration);
+                            duration, externalContentUri);
 
                     if (new File(audioModel1.getPath()).exists()) {
                         songData.add(audioModel1);
@@ -132,7 +134,7 @@ public class SDmusic extends AppCompatActivity {
 
                                 audioModel2 = new AudioModel(path,
                                         file.getName().replace(".mp3", ""),
-                                        duration);
+                                        duration, externalContentUri);
 
                                 if (new File(audioModel2.getPath()).exists()) {
                                     songData.add(audioModel2);
